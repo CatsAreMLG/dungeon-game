@@ -5,7 +5,9 @@ const rootReducer = combineReducers({
   player: playerReducer
 });
 
-export const store = createStore(
+const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+export default store;
