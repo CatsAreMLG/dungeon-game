@@ -12,6 +12,8 @@ export default function handleMovement(player) {
         return [oldPos[0], oldPos[1] + SPRITE_SIZE];
       case "EAST":
         return [oldPos[0] + SPRITE_SIZE, oldPos[1]];
+      default:
+        return [oldPos[0], oldPos[1] + SPRITE_SIZE];
     }
   };
   const getSpriteLocation = (direction, walkIndex) => {
@@ -24,6 +26,8 @@ export default function handleMovement(player) {
         return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
       case "NORTH":
         return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
+      default:
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
     }
   };
   const getWalkIndex = _ => {
