@@ -54,9 +54,9 @@ export default function handleMovement(player) {
       type: "MOVE_PLAYER",
       payload: {
         position: newPos,
-        direction,
+        direction: direction,
         spriteLocation: getSpriteLocation(direction, walkIndex),
-        walkIndex
+        walkIndex: walkIndex
       }
     });
   };

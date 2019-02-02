@@ -9,7 +9,7 @@ const World = props => {
   store.dispatch({
     type: "ADD_TILES",
     payload: {
-      tiles
+      tiles: tiles
     }
   });
   return (
