@@ -9,7 +9,7 @@ const Map = props => {
         left: "0px",
         width: "800px",
         height: "400px",
-        backgroundColor: "black"
+        backgroundColor: "#3D5229"
       }}
     />
   );
