@@ -14,17 +14,21 @@ export default function handleMovement(player) {
         return [oldPos[0] + SPRITE_SIZE, oldPos[1]];
     }
   };
-  const getSpriteLocation = direction => {
+  const getSpriteLocation = (direction, walkIndex) => {
     switch (direction) {
-      case "NORTH":
-        return `0px 120px`;
-      case "WEST":
-        return `0px 80px`;
       case "SOUTH":
-        return `0px 0px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
       case "EAST":
-        return `0px 40px`;
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
+      case "WEST":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
+      case "NORTH":
+        return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
     }
+  };
+  const getWalkIndex = _ => {
+    const walkIndex = store.getState().player.walkIndex;
+    return walkIndex >= 7 ? 0 : walkIndex + 1;
   };
   const observeBoundaries = (oldPos, newPos) => {
     return (
@@ -41,12 +45,14 @@ export default function handleMovement(player) {
     return nextTile < 5;
   };
   const dispatchMove = (direction, newPos) => {
+    const walkIndex = getWalkIndex();
     store.dispatch({
       type: "MOVE_PLAYER",
       payload: {
         position: newPos,
         direction,
-        spriteLocation: getSpriteLocation(direction)
+        spriteLocation: getSpriteLocation(direction, walkIndex),
+        walkIndex
       }
     });
   };
