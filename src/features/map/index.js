@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { SPRITE_SIZE } from "../../config/constants";
 import styles from "./styles.css";
 
@@ -48,7 +49,6 @@ const Map = props => (
       left: "0px",
       width: "800px",
       height: "400px"
-      // backgroundColor: "#3D5229"
     }}
   >
     {props.tiles.map(row => (
@@ -56,5 +56,9 @@ const Map = props => (
     ))}
   </div>
 );
-
-export default Map;
+const mstp = state => {
+  return {
+    tiles: state.map.tiles
+  };
+};
+export default connect(mstp)(Map);
