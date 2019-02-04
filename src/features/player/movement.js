@@ -48,6 +48,13 @@ export default function handleMovement(player) {
     const nextTile = tiles[y][x];
     return nextTile < 5;
   };
+  const observeChest = (oldPos, newPos) => {
+    const tiles = store.getState().map.tiles;
+    const y = newPos[1] / SPRITE_SIZE;
+    const x = newPos[0] / SPRITE_SIZE;
+    const nextTile = tiles[y][x];
+    return nextTile === 4;
+  };
   const dispatchMove = (direction, newPos) => {
     const walkIndex = getWalkIndex();
     store.dispatch({
@@ -63,8 +70,26 @@ export default function handleMovement(player) {
   const attemptMove = direction => {
     const oldPos = store.getState().player.position;
     const newPos = getNewPosition(oldPos, direction);
-    if (observeBoundaries(oldPos, newPos) && observeSolids(oldPos, newPos))
+    if (
+      observeBoundaries(oldPos, newPos) &&
+      observeSolids(oldPos, newPos) &&
+      !observeChest(oldPos, newPos)
+    )
       dispatchMove(direction, newPos);
+    if (observeChest(oldPos, newPos)) {
+      const tiles = store.getState().map.tiles;
+      const y = newPos[1] / SPRITE_SIZE;
+      const x = newPos[0] / SPRITE_SIZE;
+      alert("Here take this!");
+      let newTiles = [...tiles];
+      newTiles[y][x] = 0;
+      store.dispatch({
+        type: "CHANGE_TILES",
+        payload: {
+          tiles: newTiles
+        }
+      });
+    }
   };
   const handleKeyDown = e => {
     e.preventDefault();

@@ -8,6 +8,10 @@ const mapReducer = (state = initialState, action) => {
       return {
         ...action.payload
       };
+    case "CHANGE_TILES":
+      return {
+        ...action.payload
+      };
     default:
       return state;
   }
