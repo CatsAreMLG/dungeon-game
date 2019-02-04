@@ -1,10 +1,10 @@
 .tile {
     display: inline-flex;
-    background: rgb(82, 136, 60);
+    background: rgb(86, 138, 65);
 }
 
 .grass {
-    background: rgb(82, 136, 60);
+    background: rgb(86, 138, 65);
 }
 
 .rock {
