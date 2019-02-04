@@ -65,6 +65,7 @@ export default function handleMovement(player) {
     const newPos = getNewPosition(oldPos, direction);
     if (observeBoundaries(oldPos, newPos)) {
       switch (observeSolids(oldPos, newPos)) {
+        // chest
         case 4:
           const tiles = store.getState().map.tiles;
           const y = newPos[1] / SPRITE_SIZE;
@@ -78,14 +79,21 @@ export default function handleMovement(player) {
               tiles: newTiles
             }
           });
+          break;
+        // secret tree
         case 3:
           dispatchMove(direction, newPos);
+          break;
         case 2:
           dispatchMove(direction, newPos);
+          break;
         case 1:
           dispatchMove(direction, newPos);
+          break;
+        // grass
         case 0:
           dispatchMove(direction, newPos);
+          break;
         default:
           break;
       }

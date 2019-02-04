@@ -40,8 +40,8 @@ const MapRow = props => {
         height: SPRITE_SIZE
       }}
     >
-      {props.tiles.map(tile => (
-        <MapTile tile={tile} />
+      {props.tiles.map((tile, i) => (
+        <MapTile key={`tile-${i}`} tile={tile} />
       ))}
     </div>
   );
@@ -58,8 +58,8 @@ const Map = props => (
       outline: "3px solid white"
     }}
   >
-    {props.tiles.map(row => (
-      <MapRow tiles={row} />
+    {props.tiles.map((row, i) => (
+      <MapRow key={`row-${i}`} tiles={row} />
     ))}
   </div>
 );
