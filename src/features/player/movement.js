@@ -46,14 +46,7 @@ export default function handleMovement(player) {
     const y = newPos[1] / SPRITE_SIZE;
     const x = newPos[0] / SPRITE_SIZE;
     const nextTile = tiles[y][x];
-    return nextTile < 5;
-  };
-  const observeChest = (oldPos, newPos) => {
-    const tiles = store.getState().map.tiles;
-    const y = newPos[1] / SPRITE_SIZE;
-    const x = newPos[0] / SPRITE_SIZE;
-    const nextTile = tiles[y][x];
-    return nextTile === 4;
+    return nextTile;
   };
   const dispatchMove = (direction, newPos) => {
     const walkIndex = getWalkIndex();
@@ -70,25 +63,32 @@ export default function handleMovement(player) {
   const attemptMove = direction => {
     const oldPos = store.getState().player.position;
     const newPos = getNewPosition(oldPos, direction);
-    if (
-      observeBoundaries(oldPos, newPos) &&
-      observeSolids(oldPos, newPos) &&
-      !observeChest(oldPos, newPos)
-    )
-      dispatchMove(direction, newPos);
-    if (observeChest(oldPos, newPos)) {
-      const tiles = store.getState().map.tiles;
-      const y = newPos[1] / SPRITE_SIZE;
-      const x = newPos[0] / SPRITE_SIZE;
-      alert("Here take this!");
-      let newTiles = [...tiles];
-      newTiles[y][x] = 0;
-      store.dispatch({
-        type: "CHANGE_TILES",
-        payload: {
-          tiles: newTiles
-        }
-      });
+    if (observeBoundaries(oldPos, newPos)) {
+      switch (observeSolids(oldPos, newPos)) {
+        case 4:
+          const tiles = store.getState().map.tiles;
+          const y = newPos[1] / SPRITE_SIZE;
+          const x = newPos[0] / SPRITE_SIZE;
+          alert("Here take this!");
+          let newTiles = [...tiles];
+          newTiles[y][x] = 0;
+          store.dispatch({
+            type: "CHANGE_TILES",
+            payload: {
+              tiles: newTiles
+            }
+          });
+        case 3:
+          dispatchMove(direction, newPos);
+        case 2:
+          dispatchMove(direction, newPos);
+        case 1:
+          dispatchMove(direction, newPos);
+        case 0:
+          dispatchMove(direction, newPos);
+        default:
+          break;
+      }
     }
   };
   const handleKeyDown = e => {
