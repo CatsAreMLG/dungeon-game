@@ -6,6 +6,17 @@ class App extends Component {
     return (
       <div>
         <World />
+        <div className="controls">
+          <h3>Controls:</h3>
+          <div className="W-container">
+            <div className="W">W</div>
+          </div>
+          <div className="ASD-container">
+            <div className="A">A</div>
+            <div className="S">S</div>
+            <div className="D">D</div>
+          </div>
+        </div>
       </div>
     );
   }

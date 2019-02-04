@@ -1,3 +1,35 @@
+.controls {
+    user-select: none;
+    margin: auto;
+    display: flex;
+    color: white;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ASD-container,
+.W-container {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+.W,
+.A,
+.S,
+.D {
+    border: 1px solid white;
+    height: 2rem;
+    width: 2rem;
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+h3 {
+    font-weight: 400;
+}
+
 .tile {
     display: inline-flex;
     background: rgb(86, 138, 65);
