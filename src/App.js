@@ -5,6 +5,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1 className="title">Redux Quest</h1>
         <World />
         <div className="controls">
           <h3>Controls:</h3>

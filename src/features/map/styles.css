@@ -1,8 +1,20 @@
+* {
+    color: white;
+}
+
+.title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Press Start 2P',
+        cursive;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 .controls {
     user-select: none;
     margin: auto;
     display: flex;
-    color: white;
     justify-content: center;
     flex-wrap: wrap;
 }
